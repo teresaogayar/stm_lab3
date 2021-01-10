@@ -1,16 +1,15 @@
 package com.example.stm.model;
 
 
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.*;
 
 @Entity
 @Getter
@@ -28,6 +27,13 @@ public class User {
     private String password;
     private LocalDateTime registrationDateTime=LocalDateTime.now();
     private boolean status=false;
+    @OneToMany
+    @JoinTable(                     // association (relation) table
+            name = "user_to_tasks",
+            joinColumns = @JoinColumn(name = "user_Id"),
+            inverseJoinColumns = @JoinColumn(name = "task_Id")
+    )
+    private Set<Task> tasks = new HashSet<>();
 
     public User(int userId, String name, String lastName, String email, String password) {
         this.userId = userId;
