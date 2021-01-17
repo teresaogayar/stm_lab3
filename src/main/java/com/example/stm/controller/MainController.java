@@ -74,4 +74,9 @@ public class MainController {
             return taskService.getTaskByUserId(taskId);
         }
 
+        @PutMapping("/tasks/changeStatus")
+        public Task updateStatus(@RequestParam("taskId") int taskId, @RequestParam("newStatus") Task.Status newStatus){
+            return taskService.updateStatus(taskId,newStatus);
+        }
+
 }

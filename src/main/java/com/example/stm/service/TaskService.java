@@ -38,4 +38,15 @@ public class TaskService {
             return null;
         }
     }
+
+    public Task updateStatus(int taskId, Task.Status newStatus){
+        Task task =null;
+        Optional<Task> taskOptional = taskRepository.findById(taskId);
+        if(taskOptional.isPresent()){
+            Task taskToUpdate= taskOptional.get();
+            taskToUpdate.setStatus(newStatus);
+            task = taskRepository.save(taskToUpdate);
+        }
+        return task;
+    }
 }
