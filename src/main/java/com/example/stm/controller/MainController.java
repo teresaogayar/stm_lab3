@@ -37,4 +37,9 @@ public class MainController {
             return userService.getUserByUserId(userId);
         }
 
+        @PutMapping("/users/changeStatus")
+        public User updateStatus(@RequestParam("userId") int userId, @RequestParam("newStatus") Boolean newStatus){
+            return userService.updateStatus(userId,newStatus);
+        }
+
 }
