@@ -79,4 +79,9 @@ public class MainController {
             return taskService.updateStatus(taskId,newStatus);
         }
 
+        @DeleteMapping("/tasks/delete/{taskId}")
+        public boolean deleteTaskById(@PathVariable("taskId")int taskId){
+            return taskService.deleteTaskById(taskId);
+        }
+
 }
