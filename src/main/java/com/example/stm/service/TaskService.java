@@ -30,4 +30,12 @@ public class TaskService {
     public List<Task> getAllTasks(){
         return taskRepository.findAll();
     }
+
+    public Optional<Task> getTaskByUserId(int taskId) {
+        if (taskRepository.existsById(taskId)) {
+            return taskRepository.findById(taskId);
+        } else {
+            return null;
+        }
+    }
 }

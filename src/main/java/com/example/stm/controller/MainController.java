@@ -69,4 +69,9 @@ public class MainController {
         @GetMapping("/tasks")
         public List<Task> getAllTasks(){ return taskService.getAllTasks(); }
 
+        @GetMapping("/tasks/findById")
+        public Optional<Task> getTaskId(@RequestParam("taskId") int taskId){
+            return taskService.getTaskByUserId(taskId);
+        }
+
 }
