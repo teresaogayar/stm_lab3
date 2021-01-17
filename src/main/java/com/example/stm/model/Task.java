@@ -22,8 +22,8 @@ public class Task {
     private LocalDateTime dateAdded=LocalDateTime.now();
     private Type type;
     private Status status;
-    private enum Type{TASK, BUG, FEATURE};
-    private enum Status{NEW,IN_PROGRESS,DONE};
+    public enum Type{TASK, BUG, FEATURE};
+    public enum Status{NEW,IN_PROGRESS,DONE};
 
     @ManyToOne
     private User user;

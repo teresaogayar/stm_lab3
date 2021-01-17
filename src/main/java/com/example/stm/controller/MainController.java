@@ -61,8 +61,8 @@ public class MainController {
                 @RequestParam("status") Task.Status status,
                 @RequestParam("userId") int userId
         ){
-            Task task = new Task(title, description, type, status);  // definition and init of User class object
-            return taskService.addTask(task, userId);
+            Task task = new Task(title, description, type, status);  // definition and init of Task class object
+            return taskService.addTaskByUser(task, userId);
 
         }
 
