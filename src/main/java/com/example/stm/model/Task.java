@@ -5,10 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
@@ -23,8 +20,21 @@ public class Task {
     private String title;
     private String description;
     private LocalDateTime dateAdded=LocalDateTime.now();
-    private enum type{TASK, BUG, FEATURE};
-    private enum status{NEW,IN_PROGRESS,DONE};
+    private Type type;
+    private Status status;
+    private enum Type{TASK, BUG, FEATURE};
+    private enum Status{NEW,IN_PROGRESS,DONE};
 
+    @ManyToOne
+    private User user;
+
+
+    public Task(String title, String description, Type type, Status status) {
+        this.taskId = taskId;
+        this.title = title;
+        this.description = description;
+        this.type = type;
+        this.status = status;
+    }
 
 }

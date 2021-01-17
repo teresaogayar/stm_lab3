@@ -1,6 +1,8 @@
 package com.example.stm.controller;
 import com.example.stm.model.User;
+import com.example.stm.model.Task;
 import com.example.stm.service.UserService;
+import com.example.stm.service.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,9 +12,11 @@ import java.util.Optional;
 @RestController
 public class MainController {
     private UserService userService;
+    private TaskService taskService;
         @Autowired
-        public MainController(UserService userService){
+        public MainController(UserService userService, TaskService taskService){
             this.userService = userService;
+            this.taskService = taskService;
         }
         @PostMapping("/users/register")
         public User registerUser(
@@ -40,6 +44,26 @@ public class MainController {
         @PutMapping("/users/changeStatus")
         public User updateStatus(@RequestParam("userId") int userId, @RequestParam("newStatus") Boolean newStatus){
             return userService.updateStatus(userId,newStatus);
+        }
+
+        @DeleteMapping("/users/delete/{userId}")
+        public boolean deleteUserById(@PathVariable("userId") int userId){
+            return userService.deleteUserById(userId);
+        }
+
+
+
+        @PostMapping("/Task/createTask")
+        public Task createTaskByUser(
+                @RequestParam("title") String title,
+                @RequestParam("description") String description,
+                @RequestParam("type") Task.Type type,
+                @RequestParam("status") Task.Status status,
+                @RequestParam("userId") int userId
+        ){
+            Task task = new Task(title, description, type, status);  // definition and init of User class object
+            return taskService.addTask(task, userId);
+
         }
 
 }

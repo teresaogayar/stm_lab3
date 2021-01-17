@@ -37,5 +37,17 @@ public class UserService {
         }
         return user;
     }
+
+
+    public boolean deleteUserById(int userId){
+        boolean result = false;
+        if(userRepository.existsById(userId)) {
+            userRepository.deleteById(userId);
+            result = true;
+        }
+        return result;
+    }
+
+    
 }
 
