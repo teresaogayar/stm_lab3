@@ -18,5 +18,13 @@ public class UserService {
     public List<User> getAllUsers(){
         return userRepository.findAll();
     }
+
+    public Optional<User> getUserByUserId(int userId) {
+        if (userRepository.existsById(userId)) {
+            return userRepository.findById(userId);
+        } else {
+            return null;
+        }
+    }
 }
 

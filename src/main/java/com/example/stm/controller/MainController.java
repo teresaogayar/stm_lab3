@@ -32,4 +32,9 @@ public class MainController {
             return userService.getAllUsers();
         }
 
+        @GetMapping("users/findById")
+        public Optional<User> getUserByUserId(@RequestParam("userId") int userId){
+            return userService.getUserByUserId(userId);
+        }
+
 }
