@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
+@RequestMapping("/api") //prefix to all mappings
 @RestController
 public class MainController {
     private UserService userService;
