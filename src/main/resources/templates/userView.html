@@ -1,10 +1,31 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th=”http://www.thymeleaf.org”>
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>Users</title>
 </head>
 <body>
-$END$
+<h1> Users </h1>
+<p th:if="${users.size() == 0}"> There is no user here</p>
+<table th:if="${users.size() != 0}">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>NAME</th>
+        <th>LASTNAME</th>
+        <th>EMAIL</th>
+        <th>REGISTRATION DATE</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="user : ${users}">
+        <th th:text="${user.userId}">ID</th>
+        <th th:text="${user.name}">NAME</th>
+        <th th:text="${user.lastName}">LASTNAME</th>
+        <th th:text="${user.email}">EMAIL</th>
+        <th th:text="${#temporals.format(user.registrationDateTime, 'yyyy-MM-dd HH:mm')}">REGISTRATION DATE</th>
+    </tr>
+    </tbody>
+</table>
 </body>
 </html>
